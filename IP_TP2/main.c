@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "libveiculo.h"
+#include "libcomum.h"
 
 void menu(void);
 void menuveiculos(void);
@@ -16,18 +18,6 @@ void menuviaturas(void);
 void menumotoristas(void);
 void menuviagens(void);
 void menuestatistica(void);
-
-struct veiculo{
-	int id;
-	int tipoveiculo;
-	char marca[50];
-	char modelo[50];
-	char matricula[8];
-	int datamatricula[8];
-	float custopkm;
-	float valorreservacombustivel;
-	float consumomedio;
-};
 
 struct tipoveiculo{
 	int id;
@@ -112,7 +102,9 @@ void menuveiculos(){
 		scanf(" %c", &opcao);
 		
 		switch (opcao){
+			case 'a':;
 			case 'A':
+				insereveiculo();
 				break;
 			case 'B':
 				break;
