@@ -56,27 +56,18 @@ veiculo *listaveiculo(){
 		i = linhasficheiro(ficheiro);
 		
 		if (i > 0) {
-			veiculos = malloc(i*sizeof(veiculo));
+			veiculos = malloc(sizeof(*veiculos)*i);
 			
-			while(!feof(ficheiro))
-			{
-				fscanf(ficheiro, "%i %i %s %s %s %i %f %f %f", &veiculos[j].idveiculo, &veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, &veiculos[j].datamatricula, &veiculos[j].custopkm, &veiculos[j].valorreservacombustivel, &veiculos[j].consumomedio);
-				j++;
+			for (j = 0; j < i; j++) {
+				fscanf(ficheiro, "%i %i %s %s %s %i %f %f %f\n", &veiculos[j].idveiculo, &veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, &veiculos[j].datamatricula, &veiculos[j].custopkm, &veiculos[j].valorreservacombustivel, &veiculos[j].consumomedio);
 			}
 		}
 		else{
 			printf("Não há registos no ficheiro!");
 			exit(1);
 		}
-
 	}
-	
-	//	veiculo *veiculos = malloc(i*sizeof(veiculos));
-	//	veiculo veiculos[100];
-	//	for (int j = 0; j < i; j++) {
-	//		fscanf(ficheiro, "%i %i %s %s %s %i %f %f %f", &veiculos[j].idveiculo, &veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, &veiculos[j].datamatricula, &veiculos[j].custopkm, &veiculos[j].valorreservacombustivel, &veiculos[j].consumomedio);
-	//	}
-	
+
 	fclose(ficheiro);
 	
 	return veiculos;

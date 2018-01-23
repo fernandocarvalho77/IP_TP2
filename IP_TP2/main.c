@@ -238,13 +238,20 @@ void registaveiculo(){
 
 void listaveiculos(){
 	veiculo *lista = listaveiculo();
-//	listaveiculo();
+	int i = 0;
 	
-	int i = sizeof(lista);
+//	int numelementos = sizeof(lista)/sizeof(*lista);
 	
-	for (int i = 0; i < 10 ; i++) {
+	while (lista) {
 		printf("%i %i %s %s %s %i %.2f %.2f %.2f\n", lista[i].idveiculo, lista[i].tipoveiculo, lista[i].marca, lista[i].modelo, lista[i].matricula, lista[i].datamatricula, lista[i].custopkm, lista[i].valorreservacombustivel, lista[i].consumomedio);
+		i++;
 	}
+	
+//	for (int i = 0; i < numelementos ; i++) {
+//		printf("%i %i %s %s %s %i %.2f %.2f %.2f\n", lista[i].idveiculo, lista[i].tipoveiculo, lista[i].marca, lista[i].modelo, lista[i].matricula, lista[i].datamatricula, lista[i].custopkm, lista[i].valorreservacombustivel, lista[i].consumomedio);
+//	}
+	
+	free(lista);
 }
 
 int main() {
