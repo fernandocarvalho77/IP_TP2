@@ -39,32 +39,32 @@ int insereveiculo(int idveiculo, int tipoveiculo, char marca[], char modelo[], c
 	return 0;
 }
 
-void listaveiculo(){
-	FILE *ficheiro;
-	veiculo veiculos[10000];
-	int ch = 0, i = 0;
-	
-	ficheiro = fopen("veiculobd.txt", "r");
-	if(ficheiro == NULL)
-	{
-		printf("Houve uma problemazeco na leitura do ficheiro!");
-		exit(1);
-	}
-	
-	while(!feof(ficheiro))
-	{
-		ch = fgetc(ficheiro);
-		if(ch == '\n')
-		{
-			i++;
-		}
-	}
-	
-		for (int j = 0; j < i; j++) {
-			fscanf(ficheiro, "%i %i %s %s %s %i %f %f %f\n", &veiculos[j].idveiculo, &veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, &veiculos[j].datamatricula, &veiculos[j].custopkm, &veiculos[j].valorreservacombustivel, &veiculos[j].consumomedio);
-		}
-	
-
-	return veiculos;
-}
+//void listaveiculo(){
+//	FILE *ficheiro;
+//	veiculo veiculos[10000];
+//	int ch = 0, i = 0;
+//
+//	ficheiro = fopen("veiculobd.txt", "r");
+//	if(ficheiro == NULL)
+//	{
+//		printf("Houve uma problemazeco na leitura do ficheiro!");
+//		exit(1);
+//	}
+//	
+//	while(!feof(ficheiro))
+//	{
+//		ch = fgetc(ficheiro);
+//		if(ch == '\n')
+//		{
+//			i++;
+//		}
+//	}
+//
+//		for (int j = 0; j < i; j++) {
+//			fscanf(ficheiro, "%i %i %s %s %s %i %f %f %f\n", &veiculos[j].idveiculo, &veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, &veiculos[j].datamatricula, &veiculos[j].custopkm, &veiculos[j].valorreservacombustivel, &veiculos[j].consumomedio);
+//		}
+//
+//
+//	return veiculos;
+//}
 

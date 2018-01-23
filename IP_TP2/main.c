@@ -26,13 +26,6 @@ struct tipoveiculo{
 	char descricao[100];
 };
 
-struct motorista{
-	int id;
-	char nome[100];
-	char apelido[50];
-	int nif;
-	int tlf;
-};
 
 struct viagem{
 	int id;
@@ -266,11 +259,11 @@ void registaveiculo(){
 }
 
 void listaveiculos(){
-	veiculo lista[1000] = listaveiculo();
+//	veiculo lista[1000] = listaveiculo();
 	
-	for (int i = 0; sizeof(lista) ; i++) {
-		printf("%i %i %s %s %s %i %.2f %.2f %.2f\n", lista[i].idveiculo, lista[i].tipoveiculo, lista[i].marca, lista[i].modelo, lista[i].matricula, lista[i].datamatricula, lista[i].custopkm, lista[i].valorreservacombustivel, lista[i].consumomedio);
-	}
+//	for (int i = 0; sizeof(lista) ; i++) {
+//		printf("%i %i %s %s %s %i %.2f %.2f %.2f\n", lista[i].idveiculo, lista[i].tipoveiculo, lista[i].marca, lista[i].modelo, lista[i].matricula, lista[i].datamatricula, lista[i].custopkm, lista[i].valorreservacombustivel, lista[i].consumomedio);
+//	}
 }
 
 int main() {
