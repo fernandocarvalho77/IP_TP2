@@ -1,5 +1,5 @@
 //
-//  libmotorista.h
+//  libtipoviagem.h
 //  IP_TP2
 //
 //  Created by Fernando Carvalho on 22/01/18.
@@ -8,34 +8,31 @@
 
 #include "libcomum.h"
 
-typedef struct motorista{
-	int idmotorista;
-	char nome[100];
-	char apelido[50];
-	int nif;
-	int tlf;
-} motorista, *ptrmotorista;
+typedef struct tipoviagem{
+	int idtipoviagem;
+	char descricao[100];
+}tipoviagem, *ptrtipoviagem;
 
-int inseremotorista(int, char[], char[], int, int);
-int alteramotorista(int);
-int eliminamotorista(int);
-veiculo listamotorista(void);
+int inseretipoviagem(int, char[], char[], int, int);
+int alteratipoviagem(int);
+int eliminatipoviagem(int);
+veiculo listatipoviagem(void);
 
-int inseremotorista(int idmotorista, char nome[], char apelido[], int nif, int tlf){
+int inseretipoviagem(int idtipoviagem, char nome[], char apelido[], int nif, int tlf){
 	FILE *ficheiro;
 	
-	ficheiro = fopen("motoristabd.txt", "a+");
+	ficheiro = fopen("tipoviagembd.txt", "a+");
 	if(ficheiro == NULL)
 	{
-		ficheiro = fopen("motoristabd.txt", "w");
+		ficheiro = fopen("tipoviagembd.txt", "w");
 	}
 	
-	fprintf(ficheiro, "%i %s %s %s %i %i\n", idmotorista, nome, apelido, nif, tlf);
+	fprintf(ficheiro, "%i %s %s %s %i %i\n", idtipoviagem, nome, apelido, nif, tlf);
 	fclose(ficheiro);
 	return 0;
 }
 
-void listamotorista(){
+void listatipoviagem(){
 	FILE *ficheiro;
 	veiculo veiculos[10000];
 	int ch = 0, i = 0;

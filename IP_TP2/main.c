@@ -21,28 +21,6 @@ void menuestatistica(void);
 void registaveiculo(void);
 void listaveiculos(void);
 
-struct tipoveiculo{
-	int id;
-	char descricao[100];
-};
-
-
-struct viagem{
-	int id;
-	int tipoviagem;
-	int data;
-	int hora;
-	int veiculo;
-	int motorista;
-	float distancia;
-	float custo;
-};
-
-struct tipoviagem{
-	int id;
-	char descricao[100];
-};
-
 void menu(){
 	char opcao = ' ';
 
