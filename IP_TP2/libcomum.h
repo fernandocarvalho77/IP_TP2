@@ -7,6 +7,7 @@
 //
 
 int testaficheiro(char[]);
+int linhasficheiro(FILE*);
 
 int testaficheiro(char nomeficheiro[]){
 	FILE *ficheiro;
@@ -20,3 +21,21 @@ int testaficheiro(char nomeficheiro[]){
 		return 1;
 	}
 }
+
+int linhasficheiro(FILE *ficheiro){
+	int i = 0, ml = 0;
+	
+	while(!feof(ficheiro))
+	{
+		ml = fgetc(ficheiro);
+		if(ml == '\n')
+		{
+			i++;
+		}
+	}
+	rewind(ficheiro);
+	
+	return i;
+}
+
+

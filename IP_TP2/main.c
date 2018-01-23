@@ -237,11 +237,14 @@ void registaveiculo(){
 }
 
 void listaveiculos(){
-//	veiculo lista[1000] = listaveiculo();
+	veiculo *lista = listaveiculo();
+//	listaveiculo();
 	
-//	for (int i = 0; sizeof(lista) ; i++) {
-//		printf("%i %i %s %s %s %i %.2f %.2f %.2f\n", lista[i].idveiculo, lista[i].tipoveiculo, lista[i].marca, lista[i].modelo, lista[i].matricula, lista[i].datamatricula, lista[i].custopkm, lista[i].valorreservacombustivel, lista[i].consumomedio);
-//	}
+	int i = sizeof(lista);
+	
+	for (int i = 0; i < 10 ; i++) {
+		printf("%i %i %s %s %s %i %.2f %.2f %.2f\n", lista[i].idveiculo, lista[i].tipoveiculo, lista[i].marca, lista[i].modelo, lista[i].matricula, lista[i].datamatricula, lista[i].custopkm, lista[i].valorreservacombustivel, lista[i].consumomedio);
+	}
 }
 
 int main() {

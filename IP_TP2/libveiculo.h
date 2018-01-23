@@ -7,6 +7,7 @@
 //
 
 #include "libcomum.h"
+#define MAXVEICULOS 1000
 
 typedef struct veiculo{
 	int idveiculo;
@@ -23,7 +24,8 @@ typedef struct veiculo{
 int insereveiculo(int, int, char[], char[], char[], int, float, float, float);
 int alteraveiculo(int);
 int eliminaveiculo(int);
-veiculo listaveiculo(void);
+veiculo *listaveiculo(void);
+//void listaveiculo(void);
 
 int insereveiculo(int idveiculo, int tipoveiculo, char marca[], char modelo[], char matricula[], int datamatricula, float custopkm, float valorreservacombustivel, float consumomedio){
 	FILE *ficheiro;
@@ -34,37 +36,49 @@ int insereveiculo(int idveiculo, int tipoveiculo, char marca[], char modelo[], c
 		ficheiro = fopen("veiculobd.txt", "w");
 	}
 	
-	fprintf(ficheiro, "%i %i %s %s %s %i %.2f %.2f %.2f\n", idveiculo, tipoveiculo, marca, modelo, matricula, datamatricula, custopkm, valorreservacombustivel, consumomedio);
+	fprintf(ficheiro, "%i %i %s %s %s %i %f %f %f\n", idveiculo, tipoveiculo, marca, modelo, matricula, datamatricula, custopkm, valorreservacombustivel, consumomedio);
 	fclose(ficheiro);
 	return 0;
 }
 
-//void listaveiculo(){
-//	FILE *ficheiro;
-//	veiculo veiculos[10000];
-//	int ch = 0, i = 0;
-//
-//	ficheiro = fopen("veiculobd.txt", "r");
-//	if(ficheiro == NULL)
-//	{
-//		printf("Houve uma problemazeco na leitura do ficheiro!");
-//		exit(1);
-//	}
-//	
-//	while(!feof(ficheiro))
-//	{
-//		ch = fgetc(ficheiro);
-//		if(ch == '\n')
-//		{
-//			i++;
-//		}
-//	}
-//
-//		for (int j = 0; j < i; j++) {
-//			fscanf(ficheiro, "%i %i %s %s %s %i %f %f %f\n", &veiculos[j].idveiculo, &veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, &veiculos[j].datamatricula, &veiculos[j].custopkm, &veiculos[j].valorreservacombustivel, &veiculos[j].consumomedio);
-//		}
-//
-//
-//	return veiculos;
-//}
+veiculo *listaveiculo(){
+	FILE *ficheiro;
+	veiculo *veiculos = NULL;
+	int i = 0, j = 0;
+	
+	ficheiro = fopen("veiculobd.txt", "r");
+	if(ficheiro == NULL)
+	{
+		printf("Houve uma problemazeco na leitura do ficheiro!");
+		exit(1);
+	}
+	else {
+		i = linhasficheiro(ficheiro);
+		
+		if (i > 0) {
+			veiculos = malloc(i*sizeof(veiculo));
+			
+			while(!feof(ficheiro))
+			{
+				fscanf(ficheiro, "%i %i %s %s %s %i %f %f %f", &veiculos[j].idveiculo, &veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, &veiculos[j].datamatricula, &veiculos[j].custopkm, &veiculos[j].valorreservacombustivel, &veiculos[j].consumomedio);
+				j++;
+			}
+		}
+		else{
+			printf("Não há registos no ficheiro!");
+			exit(1);
+		}
+
+	}
+	
+	//	veiculo *veiculos = malloc(i*sizeof(veiculos));
+	//	veiculo veiculos[100];
+	//	for (int j = 0; j < i; j++) {
+	//		fscanf(ficheiro, "%i %i %s %s %s %i %f %f %f", &veiculos[j].idveiculo, &veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, &veiculos[j].datamatricula, &veiculos[j].custopkm, &veiculos[j].valorreservacombustivel, &veiculos[j].consumomedio);
+	//	}
+	
+	fclose(ficheiro);
+	
+	return veiculos;
+}
 
