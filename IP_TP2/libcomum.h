@@ -6,22 +6,17 @@
 //  Copyright © 2018 FC. All rights reserved.
 //
 
-#ifndef libcomum_h
-#define libcomum_h
+int testaficheiro(char[]);
 
-int testaficheirodb(char[]);
-
-int testaficheirodb(char nomeficheiro[]){
+int testaficheiro(char nomeficheiro[]){
 	FILE *ficheiro;
 
-	ficheiro = fopen(nomeficheiro,"r");
+	ficheiro = fopen(nomeficheiro, "r");
 	if(ficheiro == NULL){
-		ficheiro = fopen(nomeficheiro, "ab+");
+		ficheiro = fopen(nomeficheiro, "w");
 		fclose(ficheiro);
-		return 1;
-	} else {
 		return 0;
+	} else {
+		return 1;
 	}
 }
-
-#endif /* libcomum_h */
