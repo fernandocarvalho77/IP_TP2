@@ -23,9 +23,8 @@ typedef struct veiculo{
 
 int insereveiculo(int, int, char[], char[], char[], int, float, float, float);
 int alteraveiculo(int);
-int eliminaveiculo(int);
+void eliminaveiculo(void);
 void listaveiculo(void);
-//void listaveiculo(void);
 
 int insereveiculo(int idveiculo, int tipoveiculo, char marca[], char modelo[], char matricula[], int datamatricula, float custopkm, float valorreservacombustivel, float consumomedio){
 	FILE *ficheiro;
@@ -80,3 +79,74 @@ void listaveiculo(){
 	fclose(ficheiro);
 }
 
+void eliminaveiculo(){
+	FILE *ficheiro;
+	int i = 0, j = 0, registo = 0;
+	char confirma = ' ';
+	
+	ficheiro = fopen("veiculobd.txt", "r");
+	if(ficheiro == NULL)
+	{
+		printf("Houve uma problemazeco na leitura do ficheiro!");
+	}
+	else {
+		i = linhasficheiro(ficheiro);
+		
+		if (i > 0) {
+			veiculo veiculos[i];
+			
+			for (j = 0; j < i; j++) {
+				fscanf(ficheiro, "%i %i %s %s %s %i %f %f %f\n", &veiculos[j].idveiculo, &veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, &veiculos[j].datamatricula, &veiculos[j].custopkm, &veiculos[j].valorreservacombustivel, &veiculos[j].consumomedio);
+			}
+			
+			int tamanhoarray = sizeof(veiculos)/sizeof(veiculos[0]);
+			
+			if (tamanhoarray > 0) {
+				printf("\nid idveiculo tipoveiculo marca modelo matricula datamatricula custopkm valorreservacombustivel consumomedio\n");
+				for (int x = 0; x < tamanhoarray; x++) {
+					printf("%i %i %i %s %s %s %i %.2f %.2f %.2f\n", x, veiculos[x].idveiculo, veiculos[x].tipoveiculo, veiculos[x].marca, veiculos[x].modelo, veiculos[x].matricula, veiculos[x].datamatricula, veiculos[x].custopkm, veiculos[x].valorreservacombustivel, veiculos[x].consumomedio);
+				}
+			}
+			else{
+				printf("Não há registos para mostrar!");
+			}
+			
+			printf("\nInsira o id do registo a eliminar: ");
+			scanf("%i", &registo);
+			
+			printf("\n%i %i %i %s %s %s %i %.2f %.2f %.2f\n", registo, veiculos[registo].idveiculo, veiculos[registo].tipoveiculo, veiculos[registo].marca, veiculos[registo].modelo, veiculos[registo].matricula, veiculos[registo].datamatricula, veiculos[registo].custopkm, veiculos[registo].valorreservacombustivel, veiculos[registo].consumomedio);
+			printf("\nDeseja realmente eliminar o registo? (s/n): ");
+			scanf(" %c", &confirma);
+			
+			if (confirma == 's' || confirma == 'S') {
+				if (registo >= tamanhoarray || registo < 0) {
+					printf("Hm...! Esse registo nao existe, que tal um entre 0 e %i", tamanhoarray);
+				} else {
+					j = 0;
+					for (i = 0; i < tamanhoarray; i++) {
+						if (registo == i) {
+							continue;
+						}
+						veiculos[j] = veiculos[i];
+						j++;
+					}
+					tamanhoarray--;
+				}
+			}
+			else{
+				printf("Record não 'terminated'");
+			}
+			
+			fclose(ficheiro);
+			ficheiro = fopen("veiculobd.txt", "w");
+			for (j = 0; j < tamanhoarray; j++) {
+				fprintf(ficheiro, "%i %i %s %s %s %i %f %f %f\n", veiculos[j].idveiculo, veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, veiculos[j].datamatricula, veiculos[j].custopkm, veiculos[j].valorreservacombustivel, veiculos[j].consumomedio);
+			}
+		}
+		else{
+			printf("Não há nada registado no ficheiro!");
+		}
+	}
+	
+	fclose(ficheiro);
+}

@@ -80,7 +80,8 @@ void menuveiculos(){
 				break;
 			case 'B':
 				break;
-			case 'C':
+			case 'c':;
+			case 'C':eliminaveiculo();
 				break;
 			case 'd':;
 			case 'D':listaveiculo();
@@ -227,6 +228,7 @@ void registaveiculo(){
 	if (i > 0) {
 		for (j = 0; j < i; j++) {
 			resultado = insereveiculo(veiculos[j].idveiculo, veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, veiculos[j].datamatricula, veiculos[j].custopkm, veiculos[j].valorreservacombustivel, veiculos[j].consumomedio);
+			
 			if (resultado != 0) {
 				printf("\nProblema no registo do veiculo %d", veiculos[j].idveiculo);
 			}
