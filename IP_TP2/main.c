@@ -19,7 +19,6 @@ void menuviagens(void);
 void menuestatistica(void);
 
 void registaveiculo(void);
-void listaveiculos(void);
 
 void menu(){
 	char opcao = ' ';
@@ -84,7 +83,7 @@ void menuveiculos(){
 			case 'C':
 				break;
 			case 'd':;
-			case 'D':listaveiculos();
+			case 'D':listaveiculo();
 				break;
 			case 'E':
 				break;
@@ -199,7 +198,7 @@ void menuestatistica(){
 void registaveiculo(){
 	char opcao = ' ';
 	veiculo veiculos[1000];
-	int i = 0;
+	int i = 0, j = 0, resultado = 0;
 	
 	do {
 		printf("\nID: ");
@@ -226,32 +225,14 @@ void registaveiculo(){
 	} while (opcao != 'n');
 	
 	if (i > 0) {
-		for (int j = 0; j < i; j++) {
-			int resultado = insereveiculo(veiculos[j].idveiculo, veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, veiculos[j].datamatricula, veiculos[j].custopkm, veiculos[j].valorreservacombustivel, veiculos[j].consumomedio);
+		for (j = 0; j < i; j++) {
+			resultado = insereveiculo(veiculos[j].idveiculo, veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, veiculos[j].datamatricula, veiculos[j].custopkm, veiculos[j].valorreservacombustivel, veiculos[j].consumomedio);
 			if (resultado != 0) {
 				printf("\nProblema no registo do veiculo %d", veiculos[j].idveiculo);
 			}
 		}
 	}
 	return;
-}
-
-void listaveiculos(){
-	veiculo *lista = listaveiculo();
-	int i = 0;
-	
-//	int numelementos = sizeof(lista)/sizeof(*lista);
-	
-	while (lista) {
-		printf("%i %i %s %s %s %i %.2f %.2f %.2f\n", lista[i].idveiculo, lista[i].tipoveiculo, lista[i].marca, lista[i].modelo, lista[i].matricula, lista[i].datamatricula, lista[i].custopkm, lista[i].valorreservacombustivel, lista[i].consumomedio);
-		i++;
-	}
-	
-//	for (int i = 0; i < numelementos ; i++) {
-//		printf("%i %i %s %s %s %i %.2f %.2f %.2f\n", lista[i].idveiculo, lista[i].tipoveiculo, lista[i].marca, lista[i].modelo, lista[i].matricula, lista[i].datamatricula, lista[i].custopkm, lista[i].valorreservacombustivel, lista[i].consumomedio);
-//	}
-	
-	free(lista);
 }
 
 int main() {
