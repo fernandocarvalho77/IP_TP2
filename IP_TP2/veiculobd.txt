@@ -1,4 +1,4 @@
-2 1 Renault Clio 10-11-AB 10102015 1.000000 1.000000 1.000000
-2 1 Renault Clio 10-11-AB 10102015 1.000000 1.000000 1.000000
-2 1 Renault Clio 10-11-AB 10102015 1.000000 1.000000 1.000000
-2 1 Renault Clio 10-11-AB 10102015 1.000000 1.000000 1.000000
+9, Veiculo Ligeiro de Combate a Incendios, Renault, Traffic, 20-20-BC, 10122017, 5.000000, 5.000000, 1.000000
+1, Veiculo Urbano de Combate a Incendios, Opel, Corsa, 10-10-BC, 10102017, 5.000000, 5.000000, 5.000000
+1, Veiculo Urbano de Combate a Incendios, Opel, Corsa, 10-10-BC, 10102017, 5.000000, 5.000000, 5.000000
+1, Veiculo Urbano de Combate a Incendios, Opel, Corsa, 10-10-BC, 10102017, 5.000000, 5.000000, 5.000000

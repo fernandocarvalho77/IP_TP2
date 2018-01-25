@@ -2,29 +2,31 @@
 //  libviagem.h
 //  IP_TP2
 //
-//  Created by Fernando Carvalho on 22/01/18.
-//  Copyright © 2018 FC. All rights reserved.
-//
 
-#include "libcomum.h"
+#define MAXVIAGENS 10000
 
 typedef struct viagem{
-	int idviagem;
-	int tipoviagem;
+	char tipoviagem[50];
 	int data;
 	int hora;
-	int veiculo;
-	int viagem;
+	char veiculo[100];
+	char motorista[100];
 	float distancia;
 	float custo;
-}viagem, *ptrviagem;
+} viagem;
 
-int insereviagem(int, char[], char[], int, int);
-int alteraviagem(int);
-int eliminaviagem(int);
-veiculo listaviagem(void);
+typedef struct tipoviagem {
+	char descricao[50];
+} tipoviagem;
 
-int insereviagem(int idviagem, char nome[], char apelido[], int nif, int tlf){
+tipoviagem tipoviagens[2] = {"Saude", "Combate a incendio"};
+
+int insereviagem(char[], int, int, char[], char[], float, float);
+void alteraviagem(void);
+void eliminaviagem(void);
+void listaviagem(void);
+
+int insereviagem(char tipoviagem[], int data, int hora, char veiculo[], char motorista[], float distancia, float custo){
 	FILE *ficheiro;
 	
 	ficheiro = fopen("viagembd.txt", "a+");
@@ -33,37 +35,47 @@ int insereviagem(int idviagem, char nome[], char apelido[], int nif, int tlf){
 		ficheiro = fopen("viagembd.txt", "w");
 	}
 	
-	fprintf(ficheiro, "%i %s %s %s %i %i\n", idviagem, nome, apelido, nif, tlf);
+	fprintf(ficheiro, "%s, %i, %i, %s, %s, %f, %f\n", tipoviagem, data, hora, veiculo, motorista, distancia, custo);
 	fclose(ficheiro);
 	return 0;
 }
 
 void listaviagem(){
 	FILE *ficheiro;
-	veiculo veiculos[10000];
-	int ch = 0, i = 0;
-	
-	ficheiro = fopen("veiculobd.txt", "r");
+	int i = 0, j = 0;
+
+	ficheiro = fopen("viagembd.txt", "r");
 	if(ficheiro == NULL)
 	{
 		printf("Houve uma problemazeco na leitura do ficheiro!");
-		exit(1);
 	}
-	
-	while(!feof(ficheiro))
-	{
-		ch = fgetc(ficheiro);
-		if(ch == '\n')
-		{
-			i++;
+	else {
+		i = linhasficheiro(ficheiro);
+
+		if (i > 0) {
+			viagem viagens[i];
+
+			for (j = 0; j < i; j++) {
+				fscanf(ficheiro, "%[^,], %i, %i, %[^,], %[^,], %f, %f\n", viagens[j].tipoviagem, &viagens[j].data, &viagens[j].hora, viagens[j].veiculo, viagens[j].motorista, &viagens[j].distancia, &viagens[j].custo);
+			}
+
+			int tamanhoarray = sizeof(viagens)/sizeof(viagens[0]);
+
+			if (tamanhoarray > 0) {
+				printf("\nregisto, tipo de viagem, data, hora, Veiculo, motorista, distancia, custo\n");
+				for (int x = 0; x < tamanhoarray; x++) {
+					printf("%i, %s, %i, %i, %s, %s, %.2f, %.2f\n", x, viagens[x].tipoviagem, viagens[x].data, viagens[x].hora, viagens[x].veiculo, viagens[x].motorista, viagens[x].distancia, viagens[x].custo);
+				}
+			}
+			else{
+				printf("Não há registos para mostrar!");
+			}
+		}
+		else{
+			printf("Não há nada registado no ficheiro!");
 		}
 	}
-	
-//		for (int j = 0; j < i; j++) {
-//			fscanf(ficheiro, "%i %i %s %s %s %i %f %f %f\n", &veiculos[j].idveiculo, &veiculos[j].tipoveiculo, veiculos[j].marca, veiculos[j].modelo, veiculos[j].matricula, &veiculos[j].datamatricula, &veiculos[j].custopkm, &veiculos[j].valorreservacombustivel, &veiculos[j].consumomedio);
-//		}
-	
 
-	return veiculos;
+	fclose(ficheiro);
 }
 

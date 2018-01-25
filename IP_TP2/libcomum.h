@@ -2,29 +2,13 @@
 //  libcomum.h
 //  IP_TP2
 //
-//  Created by Fernando Carvalho on 22/01/18.
-//  Copyright © 2018 FC. All rights reserved.
-//
 
-int testaficheiro(char[]);
 int linhasficheiro(FILE*);
-
-int testaficheiro(char nomeficheiro[]){
-	FILE *ficheiro;
-
-	ficheiro = fopen(nomeficheiro, "r");
-	if(ficheiro == NULL){
-		ficheiro = fopen(nomeficheiro, "w");
-		fclose(ficheiro);
-		return 0;
-	} else {
-		return 1;
-	}
-}
-
+// Funcao do tipo inteiro que devolve o numero de linhas do ficheiro
 int linhasficheiro(FILE *ficheiro){
 	int i = 0, ml = 0;
 	
+	//	Enquanto não encontrar o final do ficheiro le todos os caracteres individualmente até encontrar o caractere de mudança de linha "\n"
 	while(!feof(ficheiro))
 	{
 		ml = fgetc(ficheiro);
@@ -33,6 +17,7 @@ int linhasficheiro(FILE *ficheiro){
 			i++;
 		}
 	}
+	// Aponta para o inicio do ficheiro
 	rewind(ficheiro);
 	
 	return i;
